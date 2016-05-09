@@ -1,7 +1,47 @@
 body {
-    background: #bdf;
+  margin:0;
+  color:#69635d;
+  background: #D8ECF8;
 }
 
-canvas {
-    background: #fff;
+a {
+  color: #69635d;
+  text-decoration: none;
+}
+
+a:hover{
+  color:#ffffff;
+}
+
+h1{
+  margin: 0;
+}
+
+h2{
+  margin: 0;
+}
+
+li{
+  list-style-type: none;
+}
+
+#header {
+    background: #F0D9F3;
+}
+
+#header h1{
+    margin: 0 0 0 10px;
+}
+
+#main{
+  background:#D5DCF5;
+}
+#main .parts{
+  width: 1080px;
+  margin: auto;
+  padding:20px 0 0 0;
+}
+
+#main #enter{
+  text-align: center;
 }
