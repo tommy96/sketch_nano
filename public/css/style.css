@@ -36,12 +36,30 @@ li{
 #main{
   background:#D5DCF5;
 }
+
 #main .parts{
-  width: 1080px;
   margin: auto;
   padding:20px 0 0 0;
 }
 
 #main #enter{
   text-align: center;
+}
+
+@media screen and (min-width:320px){
+  #main .parts{
+    width: 320px;
+  }
+}
+
+@media screen and (min-width:768px){
+  #main .parts{
+    width: 760px;
+  }
+}
+
+@media screen and (min-width:1024px){
+  #main .parts{
+    width: 1080px;
+  }
 }
