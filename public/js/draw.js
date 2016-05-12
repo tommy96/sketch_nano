@@ -105,10 +105,16 @@ $(function () {
   $('button.save').click(function (e) {
     var dataUrl = canvas.toDataURL();
     var title = $('.drawbox input[name=title]').val();
+    var eroi = 0;
+
+    if($('#eroIllust').prop('checked')){
+      eroi = 1;
+    }
 
     $.post('/draw', {
       src: dataUrl,
-      title: title
+      title: title,
+      eroi: eroi
     }, function (result) {
       alert('保存しました！');
       // 画面を真っ白にする

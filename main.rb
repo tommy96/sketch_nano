@@ -16,8 +16,13 @@ get '/' do
 end
 
 get '/dashboard' do
-  posts = db.execute("SELECT * FROM pictures ORDER BY id DESC")
-  erb :dashboard, {:locals => {:posts => posts}}
+  adult = params['adult']
+  if adult == "true"
+    posts = db.execute("SELECT * FROM pictures ORDER BY id DESC")
+  else
+    posts = db.execute("SELECT * FROM pictures WHERE eroi = 0 ORDER BY id DESC")
+  end
+  erb :dashboard, {:locals => {:posts => posts, :adult => adult}}
 end
 
 get '/draw' do
@@ -38,7 +43,7 @@ post '/draw' do
 
   # DBに登録する
   time = Time.now.strftime('%Y-%m-%d %H:%M:%S')
-  sql = "INSERT INTO pictures (title, src, posted_at) VALUES ('#{params['title']}', '#{name}', '#{time}')"
+  sql = "INSERT INTO pictures (title, src, eroi, posted_at) VALUES ('#{params['title']}', '#{name}', '#{params['eroi']}', '#{time}')"
   db.execute_batch(sql)
 
   # 終わったらダッシュボードに戻る
