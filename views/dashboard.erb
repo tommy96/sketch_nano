@@ -9,9 +9,8 @@
 <% posts.each do |post| %>
   <div class="post">
     <h2>
-      <%= post["title"] %>
+      <%= Rack::Utils.escape_html post["title"] %>
     </h2>
-    <p><%= post["eroi"] %></p>
     <p class="post-image">
     <img src="/uploads/<%= post["src"] %>" alt="<%= post["title"] %>">
     </p>

@@ -50,11 +50,13 @@ post '/draw' do
 
   # DBに登録する
   time = Time.now.strftime('%Y-%m-%d %H:%M:%S')
-  sql = "INSERT INTO pictures (title, src, eroi, posted_at) VALUES ('#{params['title']}', '#{name}', '#{params['eroi']}', '#{time}')"
-  db.execute_batch(sql)
-
-  # 終わったらダッシュボードに戻る
-  redirect '/dashboard'
+  sql = "INSERT INTO pictures (title, src, eroi, posted_at) VALUES (:title, :src, :eroi, :posted_at)"
+  db.execute(sql,
+    title: params['title'],
+    src: name,
+    eroi: params['eroi'],
+    posted_at: time
+  )
 end
 
 get '/api/like' do

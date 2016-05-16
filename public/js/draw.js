@@ -120,6 +120,9 @@ $(function () {
       // 画面を真っ白にする
       context2d.fillStyle = '#FFF';
       context2d.fillRect(0, 0, width, height);
+
+      //リダイレクト
+      location.href = '/dashboard';
     });
   });
 });
