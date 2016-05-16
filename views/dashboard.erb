@@ -1,25 +1,32 @@
-<h1>ダッシュボード</h1>
-<p><a href="/draw">お絵かきする</a></p>
-<% if adult == 'true' %>
-  <p><a href="/dashboard">エロなし</a></p>
-<% else %>
-  <p><a href="/dashboard?adult=true">エロあり</a></p>
-<% end %>
-
-<% posts.each do |post| %>
-  <div class="post">
-    <h2>
-      <%= Rack::Utils.escape_html post["title"] %>
-    </h2>
-    <p class="post-image">
-    <img src="/uploads/<%= post["src"] %>" alt="<%= post["title"] %>">
-    </p>
-    <p>
-    💖
-    <button class="like" data-id="<%= post["id"] %>">
-      <%= post["likes"] %>
-    </button>
-    </p>
+<div id ="header">
+  <h1>ダッシュボード</h1>
+</div>
+<div id ="main">
+  <div class="parts">
+    <p><a href="/draw">お絵かきする</a></p>
+    <% if adult == 'true' %>
+      <p><a href="/dashboard">エロなし</a></p>
+    <% else %>
+      <p><a href="/dashboard?adult=true">エロあり</a></p>
+    <% end %>
+    <% posts.each do |post| %>
+      <div class="post">
+        <h2>
+          <%= Rack::Utils.escape_html post["title"] %>
+        </h2>
+        <p class="post-image">
+        <img src="/uploads/<%= post["src"] %>" alt="<%= post["title"] %>">
+        </p>
+        <p>
+        💖
+        <button class="like" data-id="<%= post["id"] %>">
+          <%= post["likes"] %>
+        </button>
+        </p>
+      </div>
+    <% end %>
+    </div>
   </div>
-<% end %>
+</div>
+
 <script src="/js/dashboard.js"></script>
