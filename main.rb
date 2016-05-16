@@ -25,6 +25,13 @@ get '/dashboard' do
   erb :dashboard, {:locals => {:posts => posts, :adult => adult}}
 end
 
+post '/dashboard' do
+  sql = "UPDATE pictures SET likes = ('#{params['likes']}') WHERE ID = #{params['id']}"
+  db.execute_batch(sql)
+
+  redirect '/dashboard'
+end
+
 get '/draw' do
   erb :draw
 end
