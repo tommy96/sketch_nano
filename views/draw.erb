@@ -3,17 +3,26 @@
 </div>
 <div id ="main">
   <div class="parts">
-    <div class="drawbox">
-      <p><a href="/dashboard">ダッシュボードに戻る</a></p>
-      <p><canvas id="draw_canvas" width="640px" height="480px"></canvas></p>
-      <p><input type="text" name="title" placeholder="絵のタイトル"></input></p>
-      <input id="eroIllust" type="checkbox">えろい？
-      <button class="save">保存する</button>
+    <p><a href="/dashboard">ダッシュボードに戻る</a></p>
+    <div class="drawboxes clearfix">
+      <div class="drawbox" style="margin-right:40px">
+        <h2>お絵かきキャンバス</h2>
+        <p><canvas id="draw_canvas" width="480px" height="360px"></canvas></p>
+      </div>
+      <div class="drawbox">
+        <h2>お手本キャンバス</h2>
+        <p><div id="otehon_canvas"></div></p>
+        <p><input type="text" name="keyword" placeholder="書きたい絵"></input></p>
+        <button class="otehon_search">検索する</button>
+      </div>
     </div>
     <div class="tool">
       <input id="randomMode" type="checkbox" checked="checked">ランダムモード
       <p><input id="lineColor" type="color" name="color"></input></p>
       <input id="lineWidth" type="range">
+      <p><input type="text" name="title" placeholder="絵のタイトル"></input></p>
+      <input id="eroIllust" type="checkbox">えろい？
+      <button class="save">保存する</button>
       <button id="allDelete">全消去！</button>
     </div>
   </div>

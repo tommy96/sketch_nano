@@ -101,6 +101,20 @@ $(function () {
     }
   }
 
+  // お手本検索
+  $('button.otehon_search').click(function (e) {
+    $('#otehon_canvas').empty();
+    var engine_key = '001320252009995788183:wivrh8a8zeg'
+    var google_search_api_key = 'AIzaSyDJrcA0GEnEi4A1owDnmWheA8xhWsNjYjs'
+    var google_search_api = 'https://www.googleapis.com/customsearch/v1?key='+google_search_api_key+'&cx='+engine_key+'&searchType=image&q='
+    var keyword = $('.drawbox input[name=keyword]').val();
+
+    $.get(google_search_api + keyword, {
+    }, function (result) {
+      $('#otehon_canvas').prepend('<img src="'+result.items[Math.floor( Math.random() * 9 )].link+'" width="auto" height="80%" />')
+    });
+  });
+
   // 保存
   $('button.save').click(function (e) {
     var dataUrl = canvas.toDataURL();
