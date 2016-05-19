@@ -73,35 +73,8 @@ $(function () {
       context2d.fillRect(0, 0, width, height);
   });
 
-  //redo, undo
-  var cPushArray = new Array();
-  var cStep = -1;
-
-  function cPush() {
-      cStep++;
-      if (cStep < cPushArray.length) { cPushArray.length = cStep; }
-      cPushArray.push(document.canvas.toDataURL());
-  }
-
-  function cUndo() {
-    if (cStep > 0) {
-        cStep--;
-        var canvasPic = new Image();
-        canvasPic.src = cPushArray[cStep];
-        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
-    }
-  }
-
-  function cRedo() {
-    if (cStep < cPushArray.length-1) {
-        cStep++;
-        var canvasPic = new Image();
-        canvasPic.src = cPushArray[cStep];
-        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
-    }
-  }
-
   // お手本検索
+  var otehon_exist = 0
   $('button.otehon_search').click(function (e) {
     $('#otehon_canvas').empty();
     var engine_key = '001320252009995788183:wivrh8a8zeg'
@@ -112,7 +85,26 @@ $(function () {
     $.get(google_search_api + keyword, {
     }, function (result) {
       $('#otehon_canvas').prepend('<img src="'+result.items[Math.floor( Math.random() * 9 )].link+'" width="auto" height="80%" />')
+      otehon_exist = 1
     });
+  });
+
+  //トレース
+  $('button.traceMode').click(function () {
+    $('#trace_canvas').empty();
+    $('#draw_canvas').css("opacity", "0.5");
+    if(otehon_exist == 1){
+      var otehon_image = $("#otehon_canvas img").attr('src');
+      $('#trace_canvas').prepend('<img src="'+otehon_image+'" width="auto" height="80%" />');
+    }else{
+      alert('お手本がないよ！');
+    }
+  });
+
+  //トレース
+  $('button.traceModeOff').click(function () {
+    $('#trace_canvas').empty();
+    $('#draw_canvas').css("opacity", "1.0");
   });
 
   // 保存
